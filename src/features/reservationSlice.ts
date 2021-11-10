@@ -1,23 +1,27 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface reservationState {
-    value: string[]
+  value: string[];
 }
 
 const initialState: reservationState = {
   value: [],
-}
+};
 
 export const reservationsSlice = createSlice({
   name: "reservations",
   initialState,
   reducers: {
-      addReservation: (state, action: PayloadAction<string>) => {
-        state.value.push(action.payload);
-      }
+    addReservation: (state, action: PayloadAction<string>) => {
+      state.value.push(action.payload);
+    },
+
+    removeReservation: (state, action: PayloadAction<number>) => {
+      state.value.splice(action.payload, 1);
+    },
   },
-})
+});
 
-export const { addReservation } = reservationsSlice.actions
+export const { addReservation, removeReservation } = reservationsSlice.actions;
 
-export default reservationsSlice.reducer
+export default reservationsSlice.reducer;

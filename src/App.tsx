@@ -1,21 +1,22 @@
-import { useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import "./App.css"
-import { RootState } from "./app/store"
-import ReservationCardTypes from "./components/ReservationCard"
-import { addReservation } from "./features/reservationSlice"
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import "./App.css";
+import { RootState } from "./app/store";
+import ReservationCardTypes from "./components/ReservationCard";
+import { addReservation } from "./features/reservationSlice";
 
 function App() {
-
-  const reservations = useSelector((state: RootState) => state.reservations.value)
-  const dispatch = useDispatch()
-  const [reservationNameInput, setReservationNameInput] = useState("")
+  const reservations = useSelector(
+    (state: RootState) => state.reservations.value
+  );
+  const dispatch = useDispatch();
+  const [reservationNameInput, setReservationNameInput] = useState("");
 
   const handleAddReservations = () => {
     if (!reservationNameInput) return;
-    dispatch(addReservation(reservationNameInput))
-    setReservationNameInput("")
-  }
+    dispatch(addReservation(reservationNameInput));
+    setReservationNameInput("");
+  };
 
   return (
     <div className="App">
@@ -24,13 +25,16 @@ function App() {
           <div>
             <h5 className="reservation-header">Reservations</h5>
             <div className="reservation-cards-container">
-              {
-                reservations.map((name, index) => <ReservationCardTypes name={name} key={index} />)
-              }
+              {reservations.map((name, index) => (
+                <ReservationCardTypes name={name} key={index} index={index} />
+              ))}
             </div>
           </div>
           <div className="reservation-input-container">
-            <input value={reservationNameInput} onChange={(e) => setReservationNameInput(e.target.value)} />
+            <input
+              value={reservationNameInput}
+              onChange={(e) => setReservationNameInput(e.target.value)}
+            />
             <button onClick={handleAddReservations}>Add</button>
           </div>
         </div>
