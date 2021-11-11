@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface reservationState {
+interface ReservationState {
   value: string[];
 }
 
-const initialState: reservationState = {
+const initialState: ReservationState = {
   value: [],
 };
 
